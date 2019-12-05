@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnJEM04SDeUOrJyHu7dmwjAAAAAACAAAAAAAQZgAAAAEAACAAAAA0r1rPdzLVs4xiuHYaSofv7Ns/3rH0okDBPUHIVqggQgAAAAAOgAAAAAIAACAAAADKdIJVwo8iL8F+D2wmObx6ade0JfbA4gnsMCHPyK36NoAAAAAUpNNuYAYSpwtRHlYTtZI1mxsUere/C+CRn+/qUrq3A3MW2WogecXWuDBYuCtR0zE+5QbqChfv++2nVQ1iLMisttjOn41Ms+2UwZQ3hcxjh27GFDBR+gLjFcVhmNjBdlgifyJG2tOgIjjWw+qoHp1eF20WtyxsrPrTkLW58ROl/EAAAADdtKfVtkgwIVoTaRG2XOJsbJK77yzRETaDsmgs5bqrxRHNZ+p18cugqbkrSWQToy8iEgPmyY+2i2wkwjZBYp+s</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:apiscool2019dbserver.database.windows.net,1433%3bInitial Catalog=ScoolBd%3bPersist Security Info=False%3bUser ID=dbaricardo%3bPassword=%40Villanueva123%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

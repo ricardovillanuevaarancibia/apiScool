@@ -1,0 +1,14 @@
+C:\Users\pc\source\repos\ApiScool\ApiScool\bin\Debug\netcoreapp2.1\ApiScool.deps.json
+C:\Users\pc\source\repos\ApiScool\ApiScool\bin\Debug\netcoreapp2.1\ApiScool.runtimeconfig.json
+C:\Users\pc\source\repos\ApiScool\ApiScool\bin\Debug\netcoreapp2.1\ApiScool.runtimeconfig.dev.json
+C:\Users\pc\source\repos\ApiScool\ApiScool\bin\Debug\netcoreapp2.1\ApiScool.dll
+C:\Users\pc\source\repos\ApiScool\ApiScool\bin\Debug\netcoreapp2.1\ApiScool.pdb
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.csprojAssemblyReference.cache
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.RazorAssemblyInfo.cache
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.RazorAssemblyInfo.cs
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.AssemblyInfoInputs.cache
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.AssemblyInfo.cs
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.RazorTargetAssemblyInfo.cache
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.dll
+C:\Users\pc\source\repos\ApiScool\ApiScool\obj\Debug\netcoreapp2.1\ApiScool.pdb
