@@ -11,7 +11,6 @@ namespace ApiScool.Models
         public decimal Nota1 { get; set; }
         public string NotaAlfabeto { get; set; }
         public int TipoNotaId { get; set; }
-        public int FechaRegistro { get; set; }
         public int EstadoId { get; set; }
 
         public virtual Alumno Alumno { get; set; }
