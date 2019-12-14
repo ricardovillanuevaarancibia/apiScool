@@ -12,6 +12,7 @@ namespace ApiScool.Models
         }
 
         public int CursoId { get; set; }
+        public string Image { get; set; }
         public string Nombre { get; set; }
         public int EstadoId { get; set; }
 

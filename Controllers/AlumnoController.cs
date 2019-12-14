@@ -14,7 +14,7 @@ namespace ApiScool.Controllers
 {
     [Route("api/[controller]")]
  
-    [ApiController]
+    [ApiController]  
     public class AlumnoController : ControllerBase
     {
         private ScoolBdContext Context;
