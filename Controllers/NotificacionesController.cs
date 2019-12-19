@@ -13,8 +13,8 @@ namespace ApiScool.Controllers
     [ApiController]
     public class NotificacionesController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public NotificacionesController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public NotificacionesController(ColegioBdContext Context)
         {
             this.Context = Context;
         }

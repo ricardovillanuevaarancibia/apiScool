@@ -18,9 +18,9 @@ namespace ApiScool.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private ScoolBdContext Context;
+        private ColegioBdContext Context;
         private readonly IConfiguration _configuration;
-        public UserController(ScoolBdContext Context, IConfiguration configuration)
+        public UserController(ColegioBdContext Context, IConfiguration configuration)
         {
             this.Context = Context;
             _configuration = configuration;

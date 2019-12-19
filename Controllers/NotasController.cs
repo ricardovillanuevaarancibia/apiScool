@@ -13,8 +13,8 @@ namespace ApiScool.Controllers
     [ApiController]
     public class NotasController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public NotasController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public NotasController(ColegioBdContext Context)
         {
             this.Context = Context;
         }

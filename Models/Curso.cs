@@ -9,6 +9,8 @@ namespace ApiScool.Models
         {
             GradoAcademicoCurso = new HashSet<GradoAcademicoCurso>();
             Horario = new HashSet<Horario>();
+            MatriculaCursoAula = new HashSet<MatriculaCursoAula>();
+            MatriculaCursoProfesor = new HashSet<MatriculaCursoProfesor>();
         }
 
         public int CursoId { get; set; }
@@ -18,5 +20,7 @@ namespace ApiScool.Models
 
         public virtual ICollection<GradoAcademicoCurso> GradoAcademicoCurso { get; set; }
         public virtual ICollection<Horario> Horario { get; set; }
+        public virtual ICollection<MatriculaCursoAula> MatriculaCursoAula { get; set; }
+        public virtual ICollection<MatriculaCursoProfesor> MatriculaCursoProfesor { get; set; }
     }
 }

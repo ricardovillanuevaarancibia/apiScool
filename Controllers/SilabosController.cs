@@ -12,8 +12,8 @@ namespace ApiScool.Controllers
     [ApiController]
     public class SilabosController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public SilabosController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public SilabosController(ColegioBdContext Context)
         {
             this.Context = Context;
         }

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ApiScool.Models
 {
-    public partial class ScoolBdContext : DbContext
+    public partial class ColegioBdContext : DbContext
     {
-        public ScoolBdContext()
+        public ColegioBdContext()
         {
         }
 
-        public ScoolBdContext(DbContextOptions<ScoolBdContext> options)
+        public ColegioBdContext(DbContextOptions<ColegioBdContext> options)
             : base(options)
         {
         }
@@ -36,6 +36,7 @@ namespace ApiScool.Models
         public virtual DbSet<Profesor> Profesor { get; set; }
         public virtual DbSet<Silabo> Silabo { get; set; }
         public virtual DbSet<TipoGenerico> TipoGenerico { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<UsuarioAlumno> UsuarioAlumno { get; set; }
 
@@ -44,7 +45,7 @@ namespace ApiScool.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=ScoolBd;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-QRP5BLC;Initial Catalog=ColegioBd;User Id=sa;Password=@dm1n;");
             }
         }
 
@@ -122,6 +123,10 @@ namespace ApiScool.Models
 
             modelBuilder.Entity<Curso>(entity =>
             {
+                entity.Property(e => e.Image)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -216,18 +221,28 @@ namespace ApiScool.Models
                     .HasForeignKey(d => d.AulaId)
                     .HasConstraintName("FK_MatriculaCursoAula_Aula");
 
-                entity.HasOne(d => d.MatriculaCurso)
+                entity.HasOne(d => d.Curso)
                     .WithMany(p => p.MatriculaCursoAula)
-                    .HasForeignKey(d => d.MatriculaCursoId)
-                    .HasConstraintName("FK_MatriculaCursoAula_CursoGradoAcademico");
+                    .HasForeignKey(d => d.CursoId)
+                    .HasConstraintName("FK_MatriculaCursoAula_Curso");
+
+                entity.HasOne(d => d.Matricula)
+                    .WithMany(p => p.MatriculaCursoAula)
+                    .HasForeignKey(d => d.MatriculaId)
+                    .HasConstraintName("FK_MatriculaCursoAula_Matricula");
             });
 
             modelBuilder.Entity<MatriculaCursoProfesor>(entity =>
             {
-                entity.HasOne(d => d.MatriculaCurso)
+                entity.HasOne(d => d.Curso)
                     .WithMany(p => p.MatriculaCursoProfesor)
-                    .HasForeignKey(d => d.MatriculaCursoId)
-                    .HasConstraintName("FK_MatriculaCursoProfesor_MatriculaCurso");
+                    .HasForeignKey(d => d.CursoId)
+                    .HasConstraintName("FK_MatriculaCursoProfesor_Curso");
+
+                entity.HasOne(d => d.Matricula)
+                    .WithMany(p => p.MatriculaCursoProfesor)
+                    .HasForeignKey(d => d.MatriculaId)
+                    .HasConstraintName("FK_MatriculaCursoProfesor_Matricula");
 
                 entity.HasOne(d => d.Profesor)
                     .WithMany(p => p.MatriculaCursoProfesor)
@@ -244,8 +259,8 @@ namespace ApiScool.Models
 
                 entity.Property(e => e.NotaAlfabeto)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Alumno)
                     .WithMany(p => p.Nota)
@@ -349,6 +364,17 @@ namespace ApiScool.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Nombre)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });

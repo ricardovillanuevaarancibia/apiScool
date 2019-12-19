@@ -12,8 +12,8 @@ namespace ApiScool.Controllers
     [ApiController]
     public class ExamenController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public ExamenController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public ExamenController(ColegioBdContext Context)
         {
             this.Context = Context;
         }

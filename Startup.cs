@@ -43,14 +43,24 @@ namespace ApiScool
             })
              .AddJwtBearer(options =>
             {
+                //options.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    ValidateIssuer = true,
+                //    ValidateAudience = true,
+                //    ValidateLifetime = true,
+                //    ValidateIssuerSigningKey = true,
+                //    ValidIssuer = "https://apiscool20191110023542.azurewebsites.net",
+                //    ValidAudience = "https://apiscool20191110023542.azurewebsites.net",
+                //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:key"]))
+                //};
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "https://apiscool20191110023542.azurewebsites.net",
-                    ValidAudience = "https://apiscool20191110023542.azurewebsites.net",
+                    ValidIssuer = "http://localhost:1478",
+                    ValidAudience = "http://localhost:1478/",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:key"]))
                 };
             });
@@ -60,7 +70,7 @@ namespace ApiScool
                 options.AddPolicy("PermitirApiRequest",
                     builder => builder.WithOrigins("http://www.apirequest.io").WithMethods("GET", "POST").AllowAnyHeader());
             });
-            services.AddDbContext<ScoolBdContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+          services.AddDbContext<ColegioBdContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

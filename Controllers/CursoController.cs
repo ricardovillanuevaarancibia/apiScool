@@ -7,6 +7,7 @@ using ApiScool.ViewModel.Cursos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiScool.Controllers
 {
@@ -15,40 +16,42 @@ namespace ApiScool.Controllers
     [ApiController]
     public class CursoController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public CursoController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public CursoController(ColegioBdContext Context)
         {
             this.Context = Context;
         }
-        [HttpGet("Curso")]
+
         public ActionResult<object> GetCurso()
         {
 
             return new { Cursos = Context.Curso.ToList() };
         }
-        [HttpGet("Cursos/Alumno/{id}")]
+        [HttpGet("Alumno/{id}")]
         public ActionResult<object> GetCursoByAlumno(int id)
         {
             var matricula = Context.Matricula.Where(x => x.AlumnoId == id).FirstOrDefault();
 
             return new { Curso = Context.GradoAcademicoCurso.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId).Select(x => x.Curso).ToList() };
         }
-        [HttpGet("Cursos/Profesor/{cursoId}/{alumnoId}")]
+        [HttpGet("Profesor/{cursoId}/{alumnoId}")]
         public ActionResult<object> GetProfesorByCurso(int cursoId,int alumnoId)
         {
             var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
-            var matriculaCurso = Context.GradoAcademicoCurso.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId && x.CursoId == cursoId).FirstOrDefault();
-            return new { Profesor = matriculaCurso.MatriculaCursoProfesor.FirstOrDefault().Profesor};
+ 
 
+            return  Context.MatriculaCursoProfesor.Include("Profesor").Where(x => x.CursoId == cursoId && x.Matricula.MatriculaId== matricula.MatriculaId).Select(x => new
+            {
+                 x.Profesor
+            }).FirstOrDefault() ;
 
         }
-        [HttpGet("Cursos/Silabos/{cursoId}/{alumnoId}")]
+        [HttpGet("Silabos/{cursoId}/{alumnoId}")]
         public ActionResult<object> GetSilabosByCurso(int cursoId, int alumnoId)
         {
             var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
-            var gradoAcademicoCurso = Context.GradoAcademicoCurso.Where(x => x.CursoId == cursoId && x.GradoAcademicoId == matricula.GradoAcademicoId).FirstOrDefault();
           
-            return new { Silabo = Context.Silabo.Where(x => x.CursoGradoAcademicoId == gradoAcademicoCurso.GradoAcademicoCursoId).FirstOrDefault()};
+            return new { Silabo = Context.Silabo.Where(x => x.CursoGradoAcademicoId == 1).FirstOrDefault()};
 
         }
         [HttpPost("Cursos/Create")]

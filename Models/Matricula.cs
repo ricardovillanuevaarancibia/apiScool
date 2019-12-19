@@ -5,6 +5,12 @@ namespace ApiScool.Models
 {
     public partial class Matricula
     {
+        public Matricula()
+        {
+            MatriculaCursoAula = new HashSet<MatriculaCursoAula>();
+            MatriculaCursoProfesor = new HashSet<MatriculaCursoProfesor>();
+        }
+
         public int MatriculaId { get; set; }
         public string CodigoMatricula { get; set; }
         public int? AlumnoId { get; set; }
@@ -14,5 +20,7 @@ namespace ApiScool.Models
 
         public virtual Alumno Alumno { get; set; }
         public virtual GradoAcademico GradoAcademico { get; set; }
+        public virtual ICollection<MatriculaCursoAula> MatriculaCursoAula { get; set; }
+        public virtual ICollection<MatriculaCursoProfesor> MatriculaCursoProfesor { get; set; }
     }
 }

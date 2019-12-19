@@ -14,8 +14,8 @@ namespace ApiScool.Controllers
     [ApiController]
     public class HorarioController : ControllerBase
     {
-        private ScoolBdContext Context;
-        public HorarioController(ScoolBdContext Context)
+        private ColegioBdContext Context;
+        public HorarioController(ColegioBdContext Context)
         {
             this.Context = Context;
         }
