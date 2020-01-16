@@ -29,7 +29,7 @@ namespace ApiScool.Controllers
         }
         [HttpGet("Alumnos/{id}")]
         public ActionResult<object>GetAlumnoByParent(int id){
-            return new { alumnos = Context.UsuarioAlumno.Where(x => x.UsuarioId==id).Select(x => x.Usuario).ToList() };
+            return new { alumnos = Context.UsuarioAlumno.Where(x => x.UsuarioId==id).Select(x => x.Alumno).ToList() };
         }
         [HttpPost("Alumnos/Create")]
         public ActionResult<object> AddAlumno([FromBody]DTOAlumno alumno )

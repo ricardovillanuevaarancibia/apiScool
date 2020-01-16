@@ -251,3 +251,4 @@ C:\Users\PC\source\repos\apiScool\obj\Debug\netcoreapp3.0\ApiScool.dll
 C:\Users\PC\source\repos\apiScool\obj\Debug\netcoreapp3.0\ApiScool.pdb
 C:\Users\PC\source\repos\apiScool\obj\Debug\netcoreapp3.0\ApiScool.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\PC\source\repos\apiScool\obj\Debug\netcoreapp3.0\ApiScool.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\PC\source\repos\apiScool\obj\Debug\netcoreapp3.0\ApiScool.csprojAssemblyReference.cache

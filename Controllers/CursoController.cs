@@ -62,6 +62,7 @@ namespace ApiScool.Controllers
             var newCurso = new Curso()
             {
                 Nombre = curso.Nombre,
+                Image =curso.Image,
                 EstadoId=1
             
             };

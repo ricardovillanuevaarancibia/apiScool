@@ -31,13 +31,20 @@ namespace ApiScool.Controllers
            var isValid= this.Context.Usuario.Any(x => x.UserName.Equals(user.username) && x.Password.Equals(user.password));
             if (isValid)
             {
-                return Ok(BuildToken(user, new List<string>()));
+                return  this.Context.Usuario.Where(x => x.UserName.Equals(user.username) && x.Password.Equals(user.password)).Select(x => new { x.UsuarioId,x.Nombre,x.ApellidosP,x.ApellidosM}).FirstOrDefault();
             }
-            else
-            {
-                return BadRequest("Usuario o contraseña incorrecta");
-            }
- 
+
+            return BadRequest("Usuario o contraseña incorrecta");
+
+            //if (isValid)
+            //{
+            //    return Ok(BuildToken(user, new List<string>()));
+            //}
+            //else
+            //{
+            //    return BadRequest("Usuario o contraseña incorrecta");
+            //}
+
         }
 
         private UserToken BuildToken(UserInfo userInfo, IList<string> roles)
