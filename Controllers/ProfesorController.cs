@@ -55,7 +55,17 @@ namespace ApiScool.Controllers
             Context.SaveChanges();
             return Ok();
         }
-
-
+        [HttpGet("Profesor/ListaCursos/{profesorId}")]
+        public ActionResult<object> GetCursoByProfesor(int profesorId)
+        {
+            return new
+            { Cursos =
+                Context.MatriculaCursoProfesor.Where(x => x.ProfesorId == profesorId).Select(x => new
+                {
+                    x.Curso,
+                    x.Matricula.GradoAcademico.Nombre
+                }).ToList()
+            };
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace ApiScool.Models
         public string ApellidoMaterno { get; set; }
         public string Dni { get; set; }
         public int? EstadoId { get; set; }
+        public string RutaFoto { get; set; }
 
         public virtual ICollection<MatriculaCursoProfesor> MatriculaCursoProfesor { get; set; }
     }

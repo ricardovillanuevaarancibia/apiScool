@@ -45,7 +45,7 @@ namespace ApiScool.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-QRP5BLC;Initial Catalog=ColegioBd;User Id=sa;Password=@dm1n;");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=ColegioBd;Integrated Security=True");
             }
         }
 
@@ -345,6 +345,10 @@ namespace ApiScool.Models
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.RutaFoto)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Silabo>(entity =>
@@ -366,6 +370,11 @@ namespace ApiScool.Models
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.TipoGenericoPadre)
+                    .WithMany(p => p.InverseTipoGenericoPadre)
+                    .HasForeignKey(d => d.TipoGenericoPadreId)
+                    .HasConstraintName("FK_TipoGenerico_TipoGenericoPadre");
             });
 
             modelBuilder.Entity<User>(entity =>

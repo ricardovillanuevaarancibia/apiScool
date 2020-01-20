@@ -18,10 +18,10 @@ namespace ApiScool.Controllers
             this.Context = Context;
         }
         [HttpGet("LstActividades")]
-        public ActionResult<object> GetAlumno()
+        public ActionResult<object> GetActividades()
         {
 
-            return new { actividades = Context.Actividades.ToList() };
+            return new { actividades = Context.Actividades.Select(x=> new {x.Nombre,x.ActividadesId,x.Descripcion,x.EstadoId,FechaFin= x.FechaFin.Value.ToString("dd-MM-yyyy"), FechaInicio=x.FechaInicio.Value.ToString("dd-MM-yyyy")}).ToList() };
         }
     }
 }
