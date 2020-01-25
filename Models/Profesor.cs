@@ -7,6 +7,7 @@ namespace ApiScool.Models
     {
         public Profesor()
         {
+            GradoAcademicoCurso = new HashSet<GradoAcademicoCurso>();
             MatriculaCursoProfesor = new HashSet<MatriculaCursoProfesor>();
         }
 
@@ -18,6 +19,7 @@ namespace ApiScool.Models
         public int? EstadoId { get; set; }
         public string RutaFoto { get; set; }
 
+        public virtual ICollection<GradoAcademicoCurso> GradoAcademicoCurso { get; set; }
         public virtual ICollection<MatriculaCursoProfesor> MatriculaCursoProfesor { get; set; }
     }
 }

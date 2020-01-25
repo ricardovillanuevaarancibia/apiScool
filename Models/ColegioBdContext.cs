@@ -27,7 +27,7 @@ namespace ApiScool.Models
         public virtual DbSet<GradoAcademicoCurso> GradoAcademicoCurso { get; set; }
         public virtual DbSet<Horario> Horario { get; set; }
         public virtual DbSet<Matricula> Matricula { get; set; }
-        public virtual DbSet<MatriculaCursoAula> MatriculaCursoAula { get; set; }
+        public virtual DbSet<MatriculaAula> MatriculaAula { get; set; }
         public virtual DbSet<MatriculaCursoProfesor> MatriculaCursoProfesor { get; set; }
         public virtual DbSet<Nota> Nota { get; set; }
         public virtual DbSet<Notificacion> Notificacion { get; set; }
@@ -88,6 +88,10 @@ namespace ApiScool.Models
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RutaFoto)
+                    .HasMaxLength(250)
                     .IsUnicode(false);
             });
 
@@ -180,10 +184,45 @@ namespace ApiScool.Models
                     .HasForeignKey(d => d.GradoAcademicoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MatriculaCurso_GradoAcademico");
+
+                entity.HasOne(d => d.Profesor)
+                    .WithMany(p => p.GradoAcademicoCurso)
+                    .HasForeignKey(d => d.ProfesorId)
+                    .HasConstraintName("FK_GradoAcademicoCurso_Profesor");
             });
 
             modelBuilder.Entity<Horario>(entity =>
             {
+                entity.Property(e => e.DomingoHoraFin)
+                    .HasColumnName("DomingoHoraFIn")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.DomingoHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.JuevesHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.JuevesHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.LunesHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.LunesHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.MartesHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.MartesHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.MiercolesHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.MiercolesHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.SabadoHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.SabadoHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.ViernesHoraFin).HasColumnType("datetime");
+
+                entity.Property(e => e.ViernesHoraInicio).HasColumnType("datetime");
+
                 entity.HasOne(d => d.Curso)
                     .WithMany(p => p.Horario)
                     .HasForeignKey(d => d.CursoId)
@@ -214,20 +253,18 @@ namespace ApiScool.Models
                     .HasConstraintName("FK_Matricula_GradoAcademico");
             });
 
-            modelBuilder.Entity<MatriculaCursoAula>(entity =>
+            modelBuilder.Entity<MatriculaAula>(entity =>
             {
+                entity.HasKey(e => e.MatriculaCursoAulaId)
+                    .HasName("PK_MatriculaCursoAula");
+
                 entity.HasOne(d => d.Aula)
-                    .WithMany(p => p.MatriculaCursoAula)
+                    .WithMany(p => p.MatriculaAula)
                     .HasForeignKey(d => d.AulaId)
                     .HasConstraintName("FK_MatriculaCursoAula_Aula");
 
-                entity.HasOne(d => d.Curso)
-                    .WithMany(p => p.MatriculaCursoAula)
-                    .HasForeignKey(d => d.CursoId)
-                    .HasConstraintName("FK_MatriculaCursoAula_Curso");
-
                 entity.HasOne(d => d.Matricula)
-                    .WithMany(p => p.MatriculaCursoAula)
+                    .WithMany(p => p.MatriculaAula)
                     .HasForeignKey(d => d.MatriculaId)
                     .HasConstraintName("FK_MatriculaCursoAula_Matricula");
             });
@@ -380,6 +417,10 @@ namespace ApiScool.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rol)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 

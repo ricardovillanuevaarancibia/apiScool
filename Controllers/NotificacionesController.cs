@@ -25,7 +25,7 @@ namespace ApiScool.Controllers
         {
         
             var notificacion = Context.Notificacion.Where(x => x.UsuarioSendId == usuarioId).ToList();
-            return  Ok (new { Notificacion = notificacion });
+            return  Ok (new { Notificacion = notificacion.Select(x => new {comentario=x.Comentario,fechaRegistro=x.FechaRegistro.Value.ToShortDateString() +" " +x.FechaRegistro.Value.ToShortTimeString() }) });
 
         }
 

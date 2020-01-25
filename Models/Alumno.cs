@@ -22,6 +22,7 @@ namespace ApiScool.Models
         public string Dni { get; set; }
         public DateTime? FechaNacimiento { get; set; }
         public int EstadoId { get; set; }
+        public string RutaFoto { get; set; }
 
         public virtual ICollection<AlumnoAula> AlumnoAula { get; set; }
         public virtual ICollection<Asistencia> Asistencia { get; set; }
