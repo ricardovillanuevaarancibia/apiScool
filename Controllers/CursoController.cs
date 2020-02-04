@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiScool.Models;
@@ -30,26 +31,28 @@ namespace ApiScool.Controllers
         [HttpGet("Alumno/{id}")]
         public ActionResult<object> GetCursoByAlumno(int id)
         {
-            var matricula = Context.Matricula.Where(x => x.AlumnoId == id).FirstOrDefault();
+            var matricula = Context.Matricula.Where(x => x.AlumnoId == id && x.EstadoId==1).FirstOrDefault();
 
-            return new { Curso = Context.GradoAcademicoCurso.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId).Select(x => x.Curso).ToList() };
+            return new { Curso = Context.GradoAcademicoCurso.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId && x.EstadoId==1 && x.CursoId==1 ).Select(x => x.Curso).ToList() };
         }
         [HttpGet("Profesor/{cursoId}/{alumnoId}")]
         public ActionResult<object> GetProfesorByCurso(int cursoId,int alumnoId)
         {
-            var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
+            DTOCurso model = new DTOCurso();
+            var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId && x.EstadoId==1).FirstOrDefault();
  
 
-            return  Context.MatriculaCursoProfesor.Include("Profesor").Where(x => x.CursoId == cursoId && x.Matricula.MatriculaId== matricula.MatriculaId).Select(x => new
+            return  Context.MatriculaCursoProfesor.Include("Profesor").Where(x => x.CursoId == cursoId && x.Matricula.MatriculaId== matricula.MatriculaId &&x.ProfesorId ==1 && x.EstadoId==1).Select(x => new
             {
-                 x.Profesor
+                 x.Profesor,
             }).FirstOrDefault() ;
 
         }
+     
         [HttpGet("Silabos/{cursoId}/{alumnoId}")]
         public ActionResult<object> GetSilabosByCurso(int cursoId, int alumnoId)
         {
-            var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
+            var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId && x.EstadoId==1).FirstOrDefault();
           
             return new { Silabo = Context.Silabo.Where(x => x.CursoGradoAcademicoId == 1).FirstOrDefault()};
 

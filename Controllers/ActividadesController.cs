@@ -21,7 +21,7 @@ namespace ApiScool.Controllers
         public ActionResult<object> GetActividades()
         {
 
-            return new { actividades = Context.Actividades.Select(x=> new {x.Nombre,x.ActividadesId,x.Descripcion,x.EstadoId,FechaFin= x.FechaFin.Value.ToString("dd-MM-yyyy"), FechaInicio=x.FechaInicio.Value.ToString("dd-MM-yyyy")}).ToList() };
+            return new { actividades = Context.Actividades.Where(x => x.EstadoId==1).Select(x=> new {x.Nombre,x.ActividadesId,x.Descripcion,x.EstadoId,FechaFin= x.FechaFin.Value.ToString("dd-MM-yyyy"), FechaInicio=x.FechaInicio.Value.ToString("dd-MM-yyyy"),imagen =x.Imagen}).ToList() };
         }
     }
 }

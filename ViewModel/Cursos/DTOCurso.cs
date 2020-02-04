@@ -11,5 +11,6 @@ namespace ApiScool.ViewModel.Cursos
         public string Nombre { get; set; }
         public string Image { get; set; }
         public int EstadoId { get; set; }
+     
     }
 }

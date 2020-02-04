@@ -44,9 +44,7 @@ namespace ApiScool.Controllers
             //{
             //    return BadRequest("Usuario o contraseña incorrecta");
             //}
-
         }
-
         private UserToken BuildToken(UserInfo userInfo, IList<string> roles)
         {
          

@@ -60,7 +60,7 @@ namespace ApiScool.Controllers
         {
             return new
             { Cursos =
-                Context.MatriculaCursoProfesor.Where(x => x.ProfesorId == profesorId).Select(x => new
+                Context.MatriculaCursoProfesor.Where(x => x.ProfesorId == profesorId && x.EstadoId==1).Select(x => new
                 {
                     x.Curso,
                     x.Matricula.GradoAcademico.Nombre

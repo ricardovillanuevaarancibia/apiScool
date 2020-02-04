@@ -25,7 +25,7 @@ namespace ApiScool.Controllers
         public ActionResult<object> GetExamenByCursoAlumno( int alumnoId)
         {
             var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
-            var horario = Context.Horario.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId);
+            var horario = Context.Horario.Where(x => x.GradoAcademicoId == matricula.GradoAcademicoId &&x.EstadoId==1);
             return new { Horario = horario.ToList() };
 
         }

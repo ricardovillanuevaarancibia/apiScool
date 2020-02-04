@@ -61,8 +61,16 @@ namespace ApiScool.Models
 
                 entity.Property(e => e.FechaInicio).HasColumnType("datetime");
 
+                entity.Property(e => e.Imagen)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(200)
                     .IsUnicode(false);
             });
 

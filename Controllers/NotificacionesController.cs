@@ -24,8 +24,8 @@ namespace ApiScool.Controllers
         public ActionResult<object> GetNotificacionByAlumno(int usuarioId)
         {
         
-            var notificacion = Context.Notificacion.Where(x => x.UsuarioSendId == usuarioId).ToList();
-            return  Ok (new { Notificacion = notificacion.Select(x => new {comentario=x.Comentario,fechaRegistro=x.FechaRegistro.Value.ToShortDateString() +" " +x.FechaRegistro.Value.ToShortTimeString() }) });
+            var notificacion = Context.Notificacion.Where(x => x.UsuarioSendId == usuarioId && x.EstadoId==1).ToList();
+            return  Ok (new { Notificacion = notificacion.Select(x => new {notificacionId=x.NotificacionId,comentario=x.Comentario,fechaRegistro=x.FechaRegistro.Value.ToShortDateString() +" " +x.FechaRegistro.Value.ToShortTimeString() }) });
 
         }
 

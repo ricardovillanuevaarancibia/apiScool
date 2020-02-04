@@ -21,12 +21,12 @@ namespace ApiScool.Controllers
         [HttpGet("Notas/{cursoId}/{alumnoId}")]
         public ActionResult<object> GetProfesorByCurso(int cursoId, int alumnoId)
         {
-            try
-            {
-                var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
-                var gradoAcademicoCurso = Context.GradoAcademicoCurso.Where(x => x.CursoId == cursoId && x.GradoAcademicoId == matricula.GradoAcademicoId).FirstOrDefault();
-                var examenes = Context.Examen.Include(x => x.Nota).Where(x => x.GradoAcademicoCursoId == gradoAcademicoCurso.GradoAcademicoCursoId).FirstOrDefault();
-                return  Ok( new { Notas = examenes.Nota.Select(x => new {AlumnoId= x.AlumnoId,Curso = x.Examen.GradoAcademicoCurso.Curso.Nombre ,FechaExamen=x.Examen.FechaExamen,ExamenId=x.ExamenId,TipoExamen =x.Examen.TipoExamen.Nombre,Nota =x.Nota1, NotaAlfabeto=x.NotaAlfabeto }).ToList() });
+            try {
+                var gradoAcademico = Context.Matricula.Where(x => x.AlumnoId == alumnoId).FirstOrDefault();
+                var gradoAcademicoCurso = Context.GradoAcademicoCurso.Where(x => x.CursoId == cursoId && x.GradoAcademicoId== gradoAcademico.GradoAcademicoId).FirstOrDefault();
+                var Nota = Context.Nota.Include(x => x.Examen).Include(x => x.Examen.GradoAcademicoCurso.Curso).Include(x => x.Examen.TipoExamen).Where(x => x.Examen.GradoAcademicoCursoId == gradoAcademicoCurso.GradoAcademicoCursoId && x.AlumnoId == alumnoId && x.EstadoId==1).ToList();
+
+                return  Ok( new { Notas = Nota.Select(x => new {AlumnoId= x.AlumnoId,Curso = x.Examen.GradoAcademicoCurso.Curso.Nombre ,FechaExamen=x.Examen.FechaExamen.Value.ToShortDateString(),ExamenId=x.ExamenId,TipoExamen =x.Examen.TipoExamen.Nombre,Nota =x.Nota1, NotaAlfabeto=x.NotaAlfabeto }).ToList() });
             }
             catch (Exception ex)
             {

@@ -25,7 +25,7 @@ namespace ApiScool.Controllers
         [HttpGet("Alumnos")]
         public ActionResult<object> GetAlumno() {
         
-            return new { alumnos = Context.Alumno.ToList() };
+            return new { alumnos = Context.Alumno.Where(x => x.EstadoId == 1).ToList() };
         }
         [HttpGet("Alumnos/{id}")]
         public ActionResult<object>GetAlumnoByParent(int id){
