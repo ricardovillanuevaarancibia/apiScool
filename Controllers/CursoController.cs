@@ -42,9 +42,9 @@ namespace ApiScool.Controllers
             var matricula = Context.Matricula.Where(x => x.AlumnoId == alumnoId && x.EstadoId==1).FirstOrDefault();
  
 
-            return  Context.MatriculaCursoProfesor.Include("Profesor").Where(x => x.CursoId == cursoId && x.Matricula.MatriculaId== matricula.MatriculaId &&x.ProfesorId ==1 && x.EstadoId==1).Select(x => new
+            return  Context.MatriculaCursoProfesor.Include("Profesor").Where(x => x.CursoId == cursoId && x.Matricula.MatriculaId== matricula.MatriculaId  && x.EstadoId==1).Select(x => new
             {
-                 x.Profesor,
+               profesor=  x.Profesor,
             }).FirstOrDefault() ;
 
         }
@@ -62,14 +62,14 @@ namespace ApiScool.Controllers
         {
             if (!ModelState.IsValid)
                 return NotFound();
-            var newCurso = new Curso()
+            var newCurso = Context.Curso.Find(curso.CursoId);
+            if (newCurso == null)
             {
-                Nombre = curso.Nombre,
-                Image =curso.Image,
-                EstadoId=1
-            
-            };
-            Context.Curso.Add(newCurso);
+                newCurso = new Curso();
+                Context.Curso.Add(newCurso);
+            }
+            newCurso.Nombre = curso.Nombre;
+            newCurso.EstadoId = 1;
             Context.SaveChanges();
             return Ok();
         }

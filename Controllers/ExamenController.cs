@@ -24,7 +24,7 @@ namespace ApiScool.Controllers
             var gradoAcademicoCurso = Context.GradoAcademicoCurso.Where(x => x.CursoId == cursoId && x.GradoAcademicoId == matricula.GradoAcademicoId).FirstOrDefault();
             var examenes = Context.Examen.Where(x => x.GradoAcademicoCursoId == gradoAcademicoCurso.GradoAcademicoCursoId && x.EstadoId==1);
             examenes.ToList();
-            return new { Examen = examenes.Select(x => new {EstadoId =x.EstadoId,FechaExamen =x.FechaExamen.Value.ToShortDateString(),TipoExamen =x.TipoExamen.Nombre }) };
+            return new { Examen = examenes.Select(x => new {EstadoId =x.EstadoId,FechaExamen =x.FechaExamen.Value.ToString("dd-MM-yyyy"),TipoExamen =x.TipoExamen.Nombre }) };
 
         }
 

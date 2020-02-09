@@ -17,6 +17,7 @@ namespace ApiScool.Models
         public int? UsuarioSendId { get; set; }
         public int? UsuarioRegistroId { get; set; }
         public int? EstadoId { get; set; }
+        public string Titulo { get; set; }
 
         public virtual TipoGenerico TipoNotificacion { get; set; }
         public virtual Usuario UsuarioSend { get; set; }
