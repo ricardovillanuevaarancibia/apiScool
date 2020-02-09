@@ -333,6 +333,10 @@ namespace ApiScool.Models
 
                 entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
 
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.TipoNotificacion)
                     .WithMany(p => p.Notificacion)
                     .HasForeignKey(d => d.TipoNotificacionId)
@@ -346,6 +350,8 @@ namespace ApiScool.Models
 
             modelBuilder.Entity<NotificacionRespuesta>(entity =>
             {
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
                 entity.Property(e => e.Mensaje).HasColumnType("text");
 
                 entity.HasOne(d => d.Notificacion)

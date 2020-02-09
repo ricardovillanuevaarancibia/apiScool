@@ -25,7 +25,7 @@ namespace ApiScool.Controllers
         {
         
             var notificacion = Context.Notificacion.Where(x => x.UsuarioSendId == usuarioId && x.EstadoId==1).ToList();
-            return  Ok (new { Notificacion = notificacion.Select(x => new {notificacionId=x.NotificacionId,comentario=x.Comentario,fechaRegistro=x.FechaRegistro.Value.ToShortDateString() +" " +x.FechaRegistro.Value.ToShortTimeString() }) });
+            return  Ok (new { Notificacion = notificacion.Select(x => new {notificacionId=x.NotificacionId,titulo= x.Titulo,comentario=x.Comentario,fechaRegistro=x.FechaRegistro.Value.ToShortDateString() +" " +x.FechaRegistro.Value.ToShortTimeString() }) });
 
         }
 
@@ -37,11 +37,12 @@ namespace ApiScool.Controllers
             {
                 NotificacionId = respuesta.NotificacionId,
                 Mensaje = respuesta.Mensaje,
-                EstadoId = 1
+                EstadoId = 1,
+                Fecha =DateTime.Now
             };
             Context.NotificacionRespuesta.Add(notificacionRespuesta);
             Context.SaveChanges();
-            return  Ok ();
+            return  new { mensaje="OK"} ;
 
         }
     }

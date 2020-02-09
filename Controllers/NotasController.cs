@@ -26,7 +26,7 @@ namespace ApiScool.Controllers
                 var gradoAcademicoCurso = Context.GradoAcademicoCurso.Where(x => x.CursoId == cursoId && x.GradoAcademicoId== gradoAcademico.GradoAcademicoId).FirstOrDefault();
                 var Nota = Context.Nota.Include(x => x.Examen).Include(x => x.Examen.GradoAcademicoCurso.Curso).Include(x => x.Examen.TipoExamen).Where(x => x.Examen.GradoAcademicoCursoId == gradoAcademicoCurso.GradoAcademicoCursoId && x.AlumnoId == alumnoId && x.EstadoId==1).ToList();
 
-                return  Ok( new { Notas = Nota.Select(x => new {AlumnoId= x.AlumnoId,Curso = x.Examen.GradoAcademicoCurso.Curso.Nombre ,FechaExamen=x.Examen.FechaExamen.Value.ToShortDateString(),ExamenId=x.ExamenId,TipoExamen =x.Examen.TipoExamen.Nombre,Nota =x.Nota1, NotaAlfabeto=x.NotaAlfabeto }).ToList() });
+                return  Ok( new { Notas = Nota.Select(x => new {AlumnoId= x.AlumnoId,Curso = x.Examen.GradoAcademicoCurso.Curso.Nombre ,FechaExamen=x.Examen.FechaExamen.Value.ToShortDateString(),ExamenId=x.ExamenId,TipoExamen =x.Examen.TipoExamen.Nombre,Nota =Convert.ToInt32(x.Nota1), NotaAlfabeto=x.NotaAlfabeto }).ToList() });
             }
             catch (Exception ex)
             {

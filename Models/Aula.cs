@@ -13,7 +13,7 @@ namespace ApiScool.Models
 
         public int AulaId { get; set; }
         public string CodigoAula { get; set; }
-        public int? CapacidadMax { get; set; }
+        public int? CapacidadMax { get; set; } 
         public int? EstadoId { get; set; }
 
         public virtual ICollection<AlumnoAula> AlumnoAula { get; set; }
